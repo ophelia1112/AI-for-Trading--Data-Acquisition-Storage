@@ -49,6 +49,7 @@ POOL = PooledDB(
 )
 
 
+# calculate some technical indicators
 
 def calculate_VWAP(df):
     cumulative_volume = df['amount'].cumsum().replace(0, np.nan)
