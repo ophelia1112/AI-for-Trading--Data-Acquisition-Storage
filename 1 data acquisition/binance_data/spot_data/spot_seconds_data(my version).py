@@ -16,7 +16,6 @@
 
 
 # import the libraries
-
 import ccxt
 import pandas as pd
 import pymysql
@@ -95,14 +94,19 @@ def detect_large_trades(trades, symbol):
     large_buy_volume = sum(trade['amount'] for trade in large_trades if trade.get('side') == 'buy')
     large_sell_volume = sum(trade['amount'] for trade in large_trades if trade.get('side') == 'sell')
     return {
+        
         # the amount of large trade
         'large_trade_count': len(large_trades),
+        
         # the volume of large trade
         'large_trade_volume': sum(trade['amount'] for trade in large_trades),
+        
         # the total value of large trade
         'large_trade_value': sum(trade['amount'] * trade['price'] for trade in large_trades),
+        
         # the volume of large trade's buying
         'large_buy_volume': large_buy_volume,
+        
         # the volume of large trade's selling
         'large_sell_volume': large_sell_volume
     }
