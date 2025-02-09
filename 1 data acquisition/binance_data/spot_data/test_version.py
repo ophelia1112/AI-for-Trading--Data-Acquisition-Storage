@@ -14,13 +14,15 @@ import gc
 import random
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
+# configure logging
 logging.basicConfig(filename='***', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+# environmental variables
 load_dotenv()
 BINANCE_API_KEY = os.getenv("***")
 BINANCE_SECRET = os.getenv("***")
 
-
+# connect binance API
 binance = ccxt.binance({
     'apiKey': ***,
     'secret': ***,
@@ -28,12 +30,12 @@ binance = ccxt.binance({
     'timeout': 15000
 })
 
-
+# load market data and get spot symbols
 market = binance.load_markets()
 spot_symbols = [s for s in market.keys() if '/' in s and not ('UP/' in s or 'DOWN/' in s or 'PERP' in s or '-' in s)]
 aim_spot_symbols = sorted(spot_symbols, key=lambda x: market[x]['info'].get('volume', 0), reverse=True)[:100]
 
-
+# use pool of connection
 POOL = PooledDB(
     creator=pymysql,
     maxconnections=10, 
@@ -45,6 +47,8 @@ POOL = PooledDB(
     database=os.getenv('***'),
     charset='utf8'
 )
+
+
 
 def calculate_VWAP(df):
     cumulative_volume = df['amount'].cumsum().replace(0, np.nan)
