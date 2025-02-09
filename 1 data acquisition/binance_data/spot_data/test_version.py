@@ -126,7 +126,7 @@ def get_and_save_spot_seconds_data(symbol):
         )
 
         sql = """
-            INSERT INTO spot_seconds_data (
+            INSERT INTO *** (
                 symbol, timestamp, price, volume,
                 bid_price, ask_price,
                 SMA_5, EMA_5, MACD, RSI_6, VWAP,
