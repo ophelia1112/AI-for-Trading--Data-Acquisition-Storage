@@ -1,7 +1,5 @@
 # a more specific version of my data acquisition process
-
 # import some libraries first
-
 # the introduction of some necessary libraries
 # ccxt  --cryptocurrency exchange trading library
 # pandas  --data analysis library
