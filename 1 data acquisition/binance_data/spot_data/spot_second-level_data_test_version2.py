@@ -1,4 +1,4 @@
-# this version is origin "my version" 
+# this version is original "my version" 
 import ccxt
 import pandas as pd
 import pymysql
